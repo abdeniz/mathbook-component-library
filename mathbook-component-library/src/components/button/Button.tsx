@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors, fontFamily, fontSizing, spacing } from "../styles";
 
-export interface IButton  {
+export interface IButton{
   fullWidth?: boolean
   disabled?: boolean
   children?: React.ReactNode
@@ -13,9 +13,13 @@ export interface IButton  {
  * Primary UI component for user interaction
  */
 const Button = ({
+  /** Displays button in full width */
   fullWidth = false,
+  /** Displays an unclickable button with disabled styling */
   disabled = true,
+  /** Button text content */
   children,
+  /** An onClick function for click functionality */
   onClick
 }: IButton) => {
   return (
@@ -56,5 +60,5 @@ const StyledButton = styled.button<{ disabled?: boolean, fullWidth?: boolean}>`
   border-radius: ${spacing.default};
 
   background-color: ${({disabled}) => (disabled ? colors.dark2 : colors.contrast)};
-  color: ${({disabled}) => (disabled ? colors.dark1 : colors.white1)};
+  color: ${({disabled}) => (disabled ? colors.white3 : colors.white1)};
 `

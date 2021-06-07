@@ -53,5 +53,5 @@ const StyledButton = styled.button<{ disabled?: boolean, fullWidth?: boolean}>`
   text-decoration: underline;
 
   background-color: none;
-  color: ${({disabled}) => (disabled ? colors.dark2 : colors.contrast)};
+  color: ${({disabled}) => (disabled ? colors.white3 : colors.contrast)};
 `

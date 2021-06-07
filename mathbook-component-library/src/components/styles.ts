@@ -19,6 +19,7 @@ export const fontSizing = {
 export const colors = {
     white1: '#EEEEEE',
     white2: '#FAFAFA',
+    white3: '#6B727C',
     dark1: '#232931',
     dark2: '#393E46',
     contrast: '#4ECCA3',
