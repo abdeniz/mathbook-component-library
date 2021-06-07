@@ -1,2 +1,1 @@
-# mathbook-component-library
-Mathbook component library
+# Mathbook Component Library
