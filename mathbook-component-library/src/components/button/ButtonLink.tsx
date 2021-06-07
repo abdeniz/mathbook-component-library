@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { colors, fontFamily, fontSizing, spacing } from "../styles";
 
-export interface IButton  {
+export interface IButtonLink  {
   fullWidth?: boolean
   disabled?: boolean
   children?: React.ReactNode
-  onClick: () => void
 };
 
 /**
@@ -16,10 +15,9 @@ const Button = ({
   fullWidth = false,
   disabled = true,
   children,
-  onClick
-}: IButton) => {
+}: IButtonLink) => {
   return (
-    <StyledButton disabled={disabled} fullWidth={fullWidth} onClick={onClick}>{children}</StyledButton>
+    <StyledButton disabled={disabled} fullWidth={fullWidth}>{children}</StyledButton>
   );
 };
 
@@ -46,15 +44,14 @@ const StyledButton = styled.button<{ disabled?: boolean, fullWidth?: boolean}>`
   display: inline-block;
   cursor: ${({disabled}) => (disabled ? 'not-allowed' : 'pointer')};
   width: ${({fullWidth}) => (fullWidth ? '100%' : 'auto')};
-  background-color: ${colors.contrast};
   height: 60px;
   padding: 0 ${spacing.double};
   font-family: ${fontFamily};
   font-size: ${fontSizing.h3};
   font-weight: 400;
   color: ${colors.white1};
-  border-radius: ${spacing.default};
+  text-decoration: underline;
 
-  background-color: ${({disabled}) => (disabled ? colors.dark2 : colors.contrast)};
-  color: ${({disabled}) => (disabled ? colors.dark1 : colors.white1)};
+  background-color: none;
+  color: ${({disabled}) => (disabled ? colors.dark2 : colors.contrast)};
 `
