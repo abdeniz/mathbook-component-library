@@ -1,6 +1,6 @@
 {
   "name": "mathbook-component-library",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "description": "A storybook component library for mathbook-site frontend",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
