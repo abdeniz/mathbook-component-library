@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import {colors, fontFamily, fontSizing, spacing} from "../styles";
+import React from 'react'
+import styled from 'styled-components'
+import { colors, fontFamily, fontSizing, spacing } from '../styles'
 
 export interface IButton {
-  fullWidth?: boolean;
-  disabled?: boolean;
-  children?: React.ReactNode;
-  onClick?: () => void;
+  fullWidth?: boolean
+  disabled?: boolean
+  children?: React.ReactNode
+  onClick?: () => void
 }
 
 /**
@@ -26,12 +26,12 @@ const Button = ({
     <StyledButton disabled={disabled} fullWidth={fullWidth} onClick={onClick}>
       {children}
     </StyledButton>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
 
-const StyledButton = styled.button<{disabled?: boolean; fullWidth?: boolean}>`
+const StyledButton = styled.button<{ disabled?: boolean; fullWidth?: boolean }>`
   //Reset styling
   background: none;
   border: 0;
@@ -48,8 +48,8 @@ const StyledButton = styled.button<{disabled?: boolean; fullWidth?: boolean}>`
 
   box-sizing: border-box;
   display: inline-block;
-  cursor: ${({disabled}) => (disabled ? "not-allowed" : "pointer")};
-  width: ${({fullWidth}) => (fullWidth ? "100%" : "auto")};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
   background-color: ${colors.contrast};
   height: 60px;
   padding: 0 ${spacing.double};
@@ -59,14 +59,14 @@ const StyledButton = styled.button<{disabled?: boolean; fullWidth?: boolean}>`
   color: ${colors.white1};
   border-radius: ${spacing.default};
 
-  background-color: ${({disabled}) =>
+  background-color: ${({ disabled }) =>
     disabled ? colors.dark2 : colors.contrast};
-  color: ${({disabled}) => (disabled ? colors.white3 : colors.white1)};
+  color: ${({ disabled }) => (disabled ? colors.white3 : colors.white1)};
 
   transition: 0.2s all;
 
   :hover {
-    background-color: ${({disabled}) =>
+    background-color: ${({ disabled }) =>
       disabled ? colors.dark2 : colors.contrastHover};
   }
-`;
+`
