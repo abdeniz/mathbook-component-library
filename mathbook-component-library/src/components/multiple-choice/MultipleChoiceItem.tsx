@@ -6,12 +6,14 @@ export interface IMultipleChoiceItem {
   activeChoice: boolean
   choiceText: string
   changeActiveChoice: () => void
+  isCorrect: boolean
 }
 
 const MultipleChoiceItem = ({
   activeChoice,
   choiceText,
   changeActiveChoice,
+  isCorrect,
 }: IMultipleChoiceItem) => {
   const [selected, setSelected] = useState(false)
 
@@ -21,6 +23,7 @@ const MultipleChoiceItem = ({
 
   return (
     <MultipleChoiceItemWrapper
+      isCorrect={isCorrect}
       onClick={() => changeActiveChoice()}
       selected={selected}
     >
@@ -31,19 +34,21 @@ const MultipleChoiceItem = ({
 
 export default MultipleChoiceItem
 
-const MultipleChoiceItemWrapper = styled.div<{ selected?: boolean }>`
+const MultipleChoiceItemWrapper = styled.div<{
+  selected: boolean
+  isCorrect: boolean
+}>`
   padding: ${spacing.default};
   font-family: ${fontFamily};
-  background-color: ${({ selected }) =>
-    selected ? colors.contrast : colors.white1};
+  background-color: ${colors.white1};
+  background-color: ${({ selected, isCorrect }) =>
+    selected && isCorrect && colors.contrast};
+  background-color: ${({ selected, isCorrect }) =>
+    selected && !isCorrect && colors.error};
   color: ${colors.dark1};
   user-select: none;
 
   -webkit-transition: background-color 0.2 linear;
   -ms-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
-
-  :hover {
-    cursor: pointer;
-  }
 `

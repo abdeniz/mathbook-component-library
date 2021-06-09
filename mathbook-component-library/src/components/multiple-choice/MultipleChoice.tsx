@@ -4,31 +4,39 @@ import { spacing } from '../styles'
 import MultipleChoiceItem from './MultipleChoiceItem'
 import Button from '../button/Button'
 
-export interface IMultipleChoice {}
+export interface IMultipleChoice {
+  multipleChoiceData: IMultipleChoiceData
+}
 
-const MultipleChoice = (props: IMultipleChoice) => {
-  const [activeChoice, setActiveChoice] = useState(-1)
+export interface IMultipleChoiceData {
+  choices: string[]
+  correctChoice: number
+}
+
+const MultipleChoice = ({ multipleChoiceData }: IMultipleChoice) => {
+  const [clickedChoice, setClickedChoice] = useState(-1)
+  const [clicked, setClicked] = useState(false)
+
+  const { choices, correctChoice } = multipleChoiceData
 
   const changeChoice = (choice: number): void => {
-    if (choice === activeChoice) {
-      setActiveChoice(-1)
-      return
-    }
-    setActiveChoice(choice)
+    setClicked(true)
+    setClickedChoice(choice)
   }
 
   return (
     <>
-      <MultipleChoiceWrapper>
-        {new Array(3).fill(null).map((_, i) => (
+      <MultipleChoiceWrapper clicked={clicked}>
+        {choices.map((choiceText, i) => (
           <MultipleChoiceItem
-            activeChoice={activeChoice === i}
-            choiceText={'Choice' + i}
-            changeActiveChoice={() => changeChoice(i)}
+            activeChoice={clickedChoice === i}
+            choiceText={choiceText}
+            changeActiveChoice={() => !clicked && changeChoice(i)}
+            isCorrect={correctChoice === i}
           ></MultipleChoiceItem>
         ))}
       </MultipleChoiceWrapper>
-      <Button fullWidth disabled={activeChoice === -1}>
+      <Button fullWidth disabled={clickedChoice === -1}>
         Confirm
       </Button>
     </>
@@ -37,8 +45,10 @@ const MultipleChoice = (props: IMultipleChoice) => {
 
 export default MultipleChoice
 
-const MultipleChoiceWrapper = styled.div`
+const MultipleChoiceWrapper = styled.div<{ clicked?: boolean }>`
   border-radius: ${spacing.default};
   overflow: hidden;
   margin-bottom: ${spacing.default};
+
+  cursor: ${({ clicked }) => (clicked ? 'not-allowed' : 'pointer')};
 `
